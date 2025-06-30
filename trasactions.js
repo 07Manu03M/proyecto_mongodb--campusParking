@@ -1,0 +1,1 @@
+// Transaccion funcional entre colecciones
