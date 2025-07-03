@@ -1,5 +1,7 @@
 // Creacion de colecciones con $jsonSchema e indices
 
+use("campus_parking")
+
 // USUARIOS
 
 db.createCollection("usuarios"), {
