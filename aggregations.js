@@ -1,5 +1,7 @@
 // consultas analiticas usando el framework de agregacion
 
+use("campus_parking")
+
 
 // 1. ¿Cuántos parqueos se registraron por sede en el último mes?
 
@@ -38,7 +40,7 @@ db.parqueaderos.aggregate([
 
   // 2. ¿Cuáles son las zonas más ocupadas en cada sede?
 
-  db.parqueos.aggregate([
+  db.parqueaderos.aggregate([
     {
       $match: {
         activo: true // Solo parqueos activos
@@ -98,7 +100,7 @@ db.parqueaderos.aggregate([
 
   // 3. ¿Cuál es el ingreso total generado por parqueo en cada sede?
 
-  db.parqueos.aggregate([
+  db.parqueaderos.aggregate([
     {
       $match: {
         costo_total: { $ne: null } // Solo parqueos finalizados
@@ -132,7 +134,7 @@ db.parqueaderos.aggregate([
 
   // 4. ¿Qué cliente ha usado más veces el parqueadero?
 
-  db.parqueos.aggregate([
+  db.parqueaderos.aggregate([
     {
       $group: {
         _id: "$cliente_id",
@@ -167,7 +169,7 @@ db.parqueaderos.aggregate([
 
   // 5. ¿Qué tipo de vehículo es más frecuente por sede?
 
-  db.parqueos.aggregate([
+  db.parqueaderos.aggregate([
     {
       $group: {
         _id: { sede: "$sede_id", tipo_vehiculo: "$tipo_vehiculo_parqueado" },
@@ -207,9 +209,9 @@ db.parqueaderos.aggregate([
 
   // 6. Dado un cliente, mostrar su historial de parqueos (fecha, sede, zona, tipo de vehículo, tiempo y costo).
 
-  const clienteId = new ObjectId("ID_DEL_CLIENTE_AQUI"); // Reemplazar con un ID de cliente real
+  const clienteId = new ObjectId("668395e2f3d14e7a8b6c5d01"); // Reemplazar con un ID de cliente real
 
-db.parqueos.aggregate([
+db.parqueaderos.aggregate([
   {
     $match: {
       cliente_id: clienteId
@@ -268,7 +270,7 @@ db.parqueos.aggregate([
 
 // 7. Mostrar los vehículos parqueados actualmente en cada sede.
 
-db.parqueos.aggregate([
+db.parqueaderos.aggregate([
   {
     $match: {
       activo: true

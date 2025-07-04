@@ -1,3 +1,5 @@
+use("campus_parking")
+
 const session = db.getMongo().startSession();
 const dbSession = session.getDatabase("campus_parking");
 
@@ -17,7 +19,7 @@ try {
     activo: true
   };
 
-  dbSession.parqueos.insertOne(ingreso);
+  dbSession.parqueaderos.insertOne(ingreso);
 
   dbSession.zonas.updateOne(
     { _id: ObjectId("66838b97c0f823a0d9b6e4e3"), cupos_disponibles: { $gt: 0 } },
